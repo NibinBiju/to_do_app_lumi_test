@@ -9,4 +9,11 @@ class Todocontroller {
     todoList.add(todoModel);
     todoHiveController.addDatatohive(todoList);
   }
+
+  void delete(
+    int index,
+  ) {
+    todoList.removeAt(index);
+    todoHiveController.addDatatohive(todoList);
+  }
 }

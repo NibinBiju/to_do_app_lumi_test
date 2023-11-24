@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 4, 102, 7),
         onPressed: () {
-          _modalBottomSheetMenu();
+          bottomSheet();
         },
         child: const Icon(Icons.add),
       ),
@@ -65,15 +65,30 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(
                               width: 20,
                             ),
-                            Checkbox(
-                                value: Todocontroller.todoList[index].isDone,
-                                onChanged: (s) {
-                                  Todocontroller.todoList[index].isDone =
-                                      !Todocontroller.todoList[index].isDone;
-                                  isDone =
-                                      Todocontroller.todoList[index].isDone;
-                                  setState(() {});
-                                })
+                            Wrap(
+                              children: [
+                                Checkbox(
+                                    value:
+                                        Todocontroller.todoList[index].isDone,
+                                    onChanged: (s) {
+                                      Todocontroller.todoList[index].isDone =
+                                          !Todocontroller
+                                              .todoList[index].isDone;
+                                      isDone =
+                                          Todocontroller.todoList[index].isDone;
+                                      setState(() {});
+                                    }),
+                                IconButton(
+                                    onPressed: () {
+                                      todocontroller.delete(index);
+                                      setState(() {});
+                                    },
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    ))
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -84,7 +99,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _modalBottomSheetMenu() {
+  void bottomSheet() {
     showModalBottomSheet(
         context: context,
         builder: (builder) {
