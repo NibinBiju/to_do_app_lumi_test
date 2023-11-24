@@ -56,11 +56,13 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Text(
                               Todocontroller.todoList[index].name,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                              ),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 28,
+                                  decoration: isDone
+                                      ? TextDecoration.none
+                                      : TextDecoration.overline),
                             ),
                             const SizedBox(
                               width: 20,
@@ -83,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                                       todocontroller.delete(index);
                                       setState(() {});
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.delete,
                                       color: Colors.red,
                                     ))
